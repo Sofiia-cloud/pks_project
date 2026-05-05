@@ -5,10 +5,7 @@
 
 class ConfigManager {
 private:
-    // Приватный конструктор (Singleton)
     ConfigManager() = default;
-    
-    // Запрет копирования
     ConfigManager(const ConfigManager&) = delete;
     ConfigManager& operator=(const ConfigManager&) = delete;
     

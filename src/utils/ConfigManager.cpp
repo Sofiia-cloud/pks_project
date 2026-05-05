@@ -3,7 +3,7 @@
 ConfigManager* ConfigManager::instance = nullptr;
 
 ConfigManager& ConfigManager::getInstance() {
-    if (instance == nullptr) {
+    if (!instance) {
         instance = new ConfigManager();
     }
     return *instance;

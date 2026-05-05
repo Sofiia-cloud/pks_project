@@ -1,7 +1,6 @@
-// src/scanner/FileScanner.cpp
 #include "FileScanner.h"
 #include <iostream>
-#include <filesystem>  // C++17 стандартная библиотека, не требует установки
+#include <filesystem>
 #include <string>
 #include <vector>
 

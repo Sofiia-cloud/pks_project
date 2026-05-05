@@ -1,8 +1,7 @@
-// Token.h
 #ifndef TOKEN_H
 #define TOKEN_H
 
-#include <string>  // ← ЭТО КЛЮЧЕВОЕ: добавляем include для std::string
+#include <string>
 
 enum class TokenType {
     IDENTIFIER,
@@ -13,7 +12,7 @@ enum class TokenType {
 
 struct Token {
     TokenType type;
-    std::string value;  // теперь std::string определён
+    std::string value;
 };
 
 #endif

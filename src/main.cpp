@@ -3,13 +3,16 @@
 #include "parser/CodeParser.h"
 #include "generator/HTMLGenerator.h"
 #include "utils/ConfigManager.h"
+#include "utils/Logger.h"
 
 int main(int argc, char* argv[]) {
+    std::cout << "========================================" << std::endl;
     std::cout << "DoxygenLite - Documentation Generator" << std::endl;
     std::cout << "Version 1.0.0" << std::endl;
+    std::cout << "========================================" << std::endl;
     
-    // Пример использования ConfigManager (Singleton)
     auto& config = ConfigManager::getInstance();
+    auto& logger = Logger::getInstance();
     
     if (argc > 1) {
         config.setInputPath(argv[1]);
@@ -19,19 +22,19 @@ int main(int argc, char* argv[]) {
         return 1;
     }
     
-    // Сканирование файлов
+    config.setOutputPath("./docs");
+    
     FileScanner scanner;
     auto files = scanner.scan(config.getInputPath());
-    std::cout << "Found " << files.size() << " files" << std::endl;
+    logger.log("Found " + std::to_string(files.size()) + " files");
     
-    // Парсинг
     CodeParser parser;
     auto data = parser.parse(files);
     
-    // Генерация документации
     HTMLGenerator generator;
-    generator.generate(data, "./docs");
+    generator.generate(data, config.getOutputPath());
     
-    std::cout << "Documentation generated successfully!" << std::endl;
+    logger.log("Documentation generated successfully in " + config.getOutputPath());
+    
     return 0;
 }
